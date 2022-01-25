@@ -1,0 +1,34 @@
+var score = 0;
+var lives = 3;
+onEvent("start_button", "click", function() {
+  setScreen("game_screen");
+});
+onEvent("handcuffs", "click", function() {
+  setPosition("handcuffs", randomNumber(50,280), randomNumber(50, 350));
+  score = score + 1;
+  setText("total_score", score);
+  if (score == 5) {
+    setScreen("win_screen");
+    lives = 3;
+    score = 0;
+    setText("total_score", score);
+    setText("number_lives", lives);
+  }
+});
+onEvent("image1", "click", function() {
+  lives = lives - 1;
+  setText("number_lives", lives);
+  if (lives == 0) {
+    setScreen("lose_screen");
+    lives = 3;
+    score = 0;
+    setText("total_score", score);
+    setText("number_lives", lives);
+  }
+});
+onEvent("playAgain_button", "click", function() {
+  setScreen("welcome_screen");
+});
+onEvent("tryAgain_button", "click", function() {
+  setScreen("welcome_screen");
+});
